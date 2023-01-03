@@ -1,0 +1,4 @@
+# ninja log v5
+260	10998	6556560937102250	F:/work/Segmentation_J/code/Pytorch-Correlation-extension-master/build/temp.win-amd64-3.8/Release/Correlation_Module/correlation.obj	8d2e6585c3440a1
+1	11562	6556560942788999	F:/work/Segmentation_J/code/Pytorch-Correlation-extension-master/build/temp.win-amd64-3.8/Release/Correlation_Module/correlation_sampler.obj	3cd0e30191c57511
+439	21413	6556561040663091	F:/work/Segmentation_J/code/Pytorch-Correlation-extension-master/build/temp.win-amd64-3.8/Release/Correlation_Module/correlation_cuda_kernel.obj	96bf4128ccf69508

@@ -1,0 +1,29 @@
+ninja_required_version = 1.3
+cxx = cl
+nvcc = C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\bin\nvcc
+
+cflags = /nologo /Ox /W3 /GL /DNDEBUG /MD /MD /wd4819 /wd4251 /wd4244 /wd4267 /wd4275 /wd4018 /wd4190 /EHsc -DUSE_CUDA -IC:\Users\wp\.conda\envs\py\lib\site-packages\torch\include -IC:\Users\wp\.conda\envs\py\lib\site-packages\torch\include\torch\csrc\api\include -IC:\Users\wp\.conda\envs\py\lib\site-packages\torch\include\TH -IC:\Users\wp\.conda\envs\py\lib\site-packages\torch\include\THC "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\include" -IC:\Users\wp\.conda\envs\py\include -IC:\Users\wp\.conda\envs\py\include -IG:\Program\software\VC\Tools\MSVC\14.29.30133\include "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"
+post_cflags = -fopenmp -DTORCH_API_INCLUDE_EXTENSION_H -DTORCH_EXTENSION_NAME=spatial_correlation_sampler_backend -D_GLIBCXX_USE_CXX11_ABI=0 /std:c++14
+cuda_cflags = --use-local-env -Xcompiler /MD -Xcompiler /wd4819 -Xcompiler /wd4251 -Xcompiler /wd4244 -Xcompiler /wd4267 -Xcompiler /wd4275 -Xcompiler /wd4018 -Xcompiler /wd4190 -Xcompiler /EHsc -Xcudafe --diag_suppress=base_class_has_different_dll_interface -Xcudafe --diag_suppress=field_without_dll_interface -Xcudafe --diag_suppress=dll_interface_conflict_none_assumed -Xcudafe --diag_suppress=dll_interface_conflict_dllexport_assumed -DUSE_CUDA -IC:\Users\wp\.conda\envs\py\lib\site-packages\torch\include -IC:\Users\wp\.conda\envs\py\lib\site-packages\torch\include\torch\csrc\api\include -IC:\Users\wp\.conda\envs\py\lib\site-packages\torch\include\TH -IC:\Users\wp\.conda\envs\py\lib\site-packages\torch\include\THC "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\include" -IC:\Users\wp\.conda\envs\py\include -IC:\Users\wp\.conda\envs\py\include -IG:\Program\software\VC\Tools\MSVC\14.29.30133\include "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr -DTORCH_API_INCLUDE_EXTENSION_H -DTORCH_EXTENSION_NAME=spatial_correlation_sampler_backend -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_75,code=compute_75 -gencode=arch=compute_75,code=sm_75
+ldflags = 
+
+rule compile
+  command = cl /showIncludes $cflags -c $in /Fo$out $post_cflags
+  deps = msvc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc --generate-dependencies-with-compile --dependency-output $out.d $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+build F$:\work\Segmentation_J\code\Pytorch-Correlation-extension-master\build\temp.win-amd64-3.8\Release\Correlation_Module\correlation.obj: compile F$:\work\Segmentation_J\code\Pytorch-Correlation-extension-master\Correlation_Module\correlation.cpp
+build F$:\work\Segmentation_J\code\Pytorch-Correlation-extension-master\build\temp.win-amd64-3.8\Release\Correlation_Module\correlation_sampler.obj: compile F$:\work\Segmentation_J\code\Pytorch-Correlation-extension-master\Correlation_Module\correlation_sampler.cpp
+build F$:\work\Segmentation_J\code\Pytorch-Correlation-extension-master\build\temp.win-amd64-3.8\Release\Correlation_Module\correlation_cuda_kernel.obj: cuda_compile F$:\work\Segmentation_J\code\Pytorch-Correlation-extension-master\Correlation_Module\correlation_cuda_kernel.cu
+
+
+
+
+
