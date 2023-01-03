@@ -39,6 +39,7 @@ pip install scipy==1.6.3
 
 **Figure 2**: An illustration of the dynamic enhancement process of thyroid nodule.
 </p>
+
 ## Evaluation
 ```
 python inference.py
