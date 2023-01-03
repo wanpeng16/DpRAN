@@ -50,9 +50,9 @@ python main.py
 ```
 ## Visualization
 
-<img src="https://github.com/wanpeng16/DpRAN/blob/main/vis/28.png"  style="zoom: 50%;" />
+<img src="https://github.com/wanpeng16/DpRAN/blob/main/vis/28.png"  style="zoom: 30%;" />
 <br>
-<img src="https://github.com/wanpeng16/DpRAN/blob/main/vis/165.png"  style="zoom: 50%;" />
+<img src="https://github.com/wanpeng16/DpRAN/blob/main/vis/165.png"  style="zoom: 30%;" />
 
 <p align="=">
 
