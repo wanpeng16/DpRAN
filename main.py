@@ -57,7 +57,7 @@ def main():
                                              epoch_start, epoch_end, train_loader, val_loader,
                                              test_loader)
     torch.save({'test_rec': test_result, 'DpRAN': trained_model, 'Pretrain_SegmentationNet': net.state_dict()},
-               save_path + 'DpRAN' + '.pt')
+               os.path.join(save_path, 'DpRAN' + '.pt'))
 
 
 if __name__ == "__main__":
