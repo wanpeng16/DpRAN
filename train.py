@@ -157,7 +157,7 @@ def DPRAN_Train(model, net, criterion, optimizer, scheduler, epoch_start, epoch_
                 i, epoch_end, train_loss)
         )
         # Validation every epoch
-        if i >= epoch_end // 4:
+        if i >= 1:
             val_iou, val_dice, val_hd, _, _, = eval_model_DPRAN(model, net, val_loader)
 
             sys.stdout.write('\r Epoch [%d/%d] Val iou: %.4f dice: %.4f hd: %.4f' % (
